@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using ToDoListAPI.Data;
+using ToDoListAPI.Services;
+using ToDoListAPI.Services.PasswordHash;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +11,9 @@ builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer(conne
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<IJWT, JWT>();
+builder.Services.AddScoped<IPasswordHash, PasswordHash>();
 
 var app = builder.Build();
 
