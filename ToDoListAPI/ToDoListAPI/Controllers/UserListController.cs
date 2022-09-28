@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ToDoListAPI.Data;
 using ToDoListAPI.Models;
@@ -7,6 +8,7 @@ namespace ToDoListAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "user")]
     public class UserListController : ControllerBase
     {
         private DataContext db;
