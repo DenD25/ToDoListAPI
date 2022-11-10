@@ -1,0 +1,52 @@
+<div class="container-fluid row justify-content-center">
+    <form class="col-4" [formGroup]="loginForm" novalidate (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+            <label class="form-label">Username:</label>
+            <input type="text" class="form-control" formControlName="username" [ngClass]="{
+                'is-invalid': loginForm.controls['username'].invalid && loginForm.controls['username'].touched,
+                'is-valid': loginForm.controls['username'].valid && loginForm.controls['username'].touched }" />         
+            <div class="alert alert-danger"
+                *ngIf="loginForm.controls['username'].invalid && loginForm.controls['username'].touched">
+                <span *ngIf="loginForm.controls['username'].errors?.['required']">
+                    Username is required.
+                </span>
+                <span *ngIf="loginForm.controls['username'].errors?.['minlength']">
+                    Min length is 4.
+                </span>
+                <span *ngIf="loginForm.controls['username'].errors?.['maxlength']">
+                    Max length is 20.
+                </span>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Password:</label>
+            <input type="password" class="form-control" formControlName="password" [ngClass]="{
+                'is-invalid': loginForm.controls['password'].invalid && loginForm.controls['password'].touched,
+                'is-valid': loginForm.controls['password'].valid && loginForm.controls['password'].touched }"/>         
+            <div class="alert alert-danger"
+                *ngIf="loginForm.controls['password'].invalid && loginForm.controls['password'].touched">
+                <span *ngIf="loginForm.controls['password'].errors?.['required']">
+                    Password is required.
+                </span>
+                <span *ngIf="loginForm.controls['password'].errors?.['minlength']">
+                    Min length is 4.
+                </span>
+                <span *ngIf="loginForm.controls['password'].errors?.['maxlength']">
+                    Max length is 20.
+                </span>
+            </div>
+        </div>
+        <div class="mb-3 text-center">
+            <button class="btn btn-primary" [disabled]="loginForm.invalid">
+                Log in
+            </button>
+        </div>
+        <div class="text-center">
+            <p>
+                First time?<br>
+                Click <a routerLink="../registration">HERE</a>
+            </p>
+        </div>
+    </form>
+</div>
+

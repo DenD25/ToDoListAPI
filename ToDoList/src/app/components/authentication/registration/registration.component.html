@@ -1,0 +1,60 @@
+<div class="container-fluid row justify-content-center">
+    <form class="col-4" [formGroup]="registerForm" novalidate (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+            <label class="form-label">Username:</label>
+            <input type="text" class="form-control" formControlName="username" [ngClass]="{
+                'is-invalid': registerForm.controls['username'].invalid && registerForm.controls['username'].touched,
+                'is-valid': registerForm.controls['username'].valid && registerForm.controls['username'].touched }" />
+            <div class="alert alert-danger"
+                *ngIf="registerForm.controls['username'].invalid && registerForm.controls['username'].touched">
+                <span *ngIf="registerForm.controls['username'].errors?.['required']">
+                    Username is required.
+                </span>
+                <span *ngIf="registerForm.controls['username'].errors?.['minlength']">
+                    Min length is 4.
+                </span>
+                <span *ngIf="registerForm.controls['username'].errors?.['maxlength']">
+                    Max length is 20.
+                </span>
+            </div>
+        </div>
+        <label class="form-label">Role:</label>
+        <div class="mb-3">
+            <div class="form-check col-4">
+                <input class="form-check-input" type="radio" name="roleId" value="1" formControlName="roleId">
+                <label class="form-check-label">
+                    Admin
+                </label>
+            </div>
+            <div class="form-check col-4">
+                <input class="form-check-input" type="radio" name="roleId" value="2" formControlName="roleId" checked>
+                <label class="form-check-label">
+                    User
+                </label>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Password:</label>
+            <input type="password" class="form-control" formControlName="password" [ngClass]="{
+                'is-invalid': registerForm.controls['password'].invalid && registerForm.controls['password'].touched,
+                'is-valid': registerForm.controls['password'].valid && registerForm.controls['password'].touched }" />
+            <div class="alert alert-danger"
+                *ngIf="registerForm.controls['password'].invalid && registerForm.controls['password'].touched">
+                <span *ngIf="registerForm.controls['password'].errors?.['required']">
+                    Password is required.
+                </span>
+                <span *ngIf="registerForm.controls['password'].errors?.['minlength']">
+                    Min length is 4.
+                </span>
+                <span *ngIf="registerForm.controls['password'].errors?.['maxlength']">
+                    Max length is 20.
+                </span>
+            </div>
+        </div>
+        <div class="mb-3 text-center">
+            <button class="btn btn-primary" [disabled]="registerForm.invalid">
+                Submit
+            </button>
+        </div>
+    </form>
+</div>

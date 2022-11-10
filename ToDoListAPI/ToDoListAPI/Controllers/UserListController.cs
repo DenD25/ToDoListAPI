@@ -8,7 +8,7 @@ namespace ToDoListAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "user")]
+    [Authorize(Roles = "admin")]
     public class UserListController : ControllerBase
     {
         private DataContext db;
